@@ -25,6 +25,36 @@ const Carousel = styled.div(() => ({
   position: 'relative',
 }));
 
+const Circle = styled.div(() => ({
+  width: '50px',
+  height: '50px',
+  borderRadius: '50%',
+  backgroundColor: 'gray',
+  display: 'flex',
+  justifyContent: 'center',
+  margin : "5px",
+  alignItems: 'center',
+  color: 'white',
+  fontSize: '18px',
+  fontWeight: 'bold',
+}));
+
+const NameDiv = styled.div(()=>({
+  display : 'flex',
+  flexDirection:"column",
+  justifyContent : 'start',
+  fontSize: '14px',
+  alignItems : "start"
+}))
+
+const ParentNameDiv = styled.div(()=>({
+  display : 'flex',
+  justifyContent : 'start',
+  padding : "5px",
+  alignItems : "center",
+  gap:"4px"
+}))
+
 const CarouselItem = styled.div(() => ({
   flex: '0 0 auto',
   scrollSnapAlign: 'start',
@@ -98,6 +128,15 @@ const Post = ({ post }) => {
   return (
     <PostContainer>
       <CarouselContainer>
+        <ParentNameDiv>
+          <Circle >
+            LG
+          </Circle>
+          <NameDiv>
+              <h2>Leanne Graham</h2>
+              <h5>Sincere@april.biz</h5>
+          </NameDiv>
+        </ParentNameDiv>
         <Carousel ref={carouselRef}>
           {post.images.map((image, index) => (
             <CarouselItem key={index}>

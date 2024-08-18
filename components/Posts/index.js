@@ -53,7 +53,7 @@ export default function Posts() {
   const handleClick = () => {
     setIsLoading(true);
     setPostNum([postNum[0]+5,postNum[1]+5])
-    console.log(postNum)
+    console.log(posts)
     fetchPost();
 
     setTimeout(() => {
