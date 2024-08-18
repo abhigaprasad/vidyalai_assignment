@@ -1,3 +1,5 @@
+const { post } = require('./posts.router');
+
 const axios = require('axios').default;
 
 /**
@@ -19,6 +21,7 @@ async function fetchPosts(params) {
       },
     },
   );
+  console.log(posts,"post")
 
   return posts;
 }
