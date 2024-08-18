@@ -8,8 +8,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     // Fetch all posts
-    const posts = await fetchPosts();
-
+    const posts = await fetchPosts(req.query);
+    // console.log(req.query,"req")
     // Use Promise.all to fetch images for all posts concurrently
     const postsWithImages = await Promise.all(
       posts.map(async (post) => {

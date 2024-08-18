@@ -35,32 +35,37 @@ const LoadMoreButton = styled.button(() => ({
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const { isSmallerDevice } = useWindowWidth();
+  const [postNum,setPostNum] = useState([5,10])
+
+  const fetchPost = async () => {
+    const { data: posts } = await axios.get('/api/v1/posts', {
+      params: { start: 0, limit : isSmallerDevice ? postNum[0] : postNum[1] },
+    });
+    setPosts(posts);
+  };
+
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const { data: posts } = await axios.get('/api/v1/posts', {
-        params: { start: 0, limit: isSmallerDevice ? 5 : 10 },
-      });
-      setPosts(posts);
-    };
-
     fetchPost();
   }, [isSmallerDevice]);
 
   const handleClick = () => {
     setIsLoading(true);
+    setPostNum([postNum[0]+5,postNum[1]+5])
+    console.log(postNum)
+    fetchPost();
 
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+    console.log(posts)
   };
 
   return (
     <Container>
       <PostListContainer>
-        {posts.map(post => (
+        {posts?.map(post => (
           <Post post={post} />
         ))}
       </PostListContainer>
